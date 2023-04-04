@@ -17,6 +17,6 @@ const promiseFactory = (time) => {
   return acc.then(() => promiseFactory(cur));
 }, Promise.resolve());
 
-/** 
+/**  
  * 출 : https://www.zerocho.com/category/JavaScript/post/5acafb05f24445001b8d796d
 */
