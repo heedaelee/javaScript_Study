@@ -37,11 +37,13 @@ elms.forEach(function (elm) {
 let isLoop = false;
 
 /**
- * Player class containing the state of our playlist and where we are in it.
- * Includes all methods for playing, skipping, updating the display, etc.
+ * 플레이어 클래스는 플레이리스트와 그것들이 있는 조건들을 가지고 있습니다.
+ * 재생, 스킵, 디스플레이 업데이트 등 모든 메서드들을 포함합니다.
  * @param {Array} playlist Array of objects with playlist song details ({title, file, howl}).
  */
-var Player = function (playlist) {
+
+/* Player 객체 정의부 */
+const Player = function (playlist) {
   this.playlist = playlist;
   this.index = 0;
 
@@ -59,9 +61,11 @@ var Player = function (playlist) {
     list.appendChild(div);
   });
 };
+
+/* Player 프로토타입 정의부 */
 Player.prototype = {
   /**
-   * Play a song in the playlist.
+   * 플레이리스트의 곡을 재생합니다
    * @param  {Number} index Index of the song in the playlist (leave empty to play the first or current).
    */
   play: function (index) {
@@ -71,8 +75,7 @@ Player.prototype = {
     index = typeof index === "number" ? index : self.index;
     var data = self.playlist[index];
 
-    // If we already loaded this track, use the current one.
-    // Otherwise, setup and load a new Howl.
+    // 로드된 트렉이 있으면 이것을 사용하고, 없으면 새로운 Howl 객체를 설정하고 로드하세요
     if (data.howl) {
       sound = data.howl;
     } else {
@@ -338,7 +341,10 @@ Player.prototype = {
 };
 
 // Setup our new audio player class and pass it the playlist.
-var player = new Player([
+/** 데이터 받아와서, Player 인스턴스 생성하기 
+ *  플레이어 인스턴스는 지금 생성 되는데, Howl 인스턴스는 player의 프로토타입중 play()되는 순간 new Howl({}) 형태로 생성된다.
+*/
+const player = new Player([
   {
     title: "1",
     file: "1",
@@ -356,7 +362,7 @@ var player = new Player([
   },
 ]);
 
-// Bind our player controls.
+// 플레이어 control 가능한 html 태그와 바인딩.
 playBtn.addEventListener("click", function () {
   player.play();
 });
