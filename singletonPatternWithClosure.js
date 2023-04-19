@@ -39,6 +39,7 @@ let singleton = (function() {
  * 계속 공유 할수 있게됨. 
  * 또한 이 instance 변수는 외부에서 함부로 접근이 불가능하므로(singleton 함수 생명주기가 끝났으니)
  * 오직 getInstance()호출로만 접근이 가능하므로 객체의 은닉화(java의 private)역할을 가능케 함
+ * 단 하나의 인스턴스만 생성되도록 보장됨
  */
 let singletonA = singleton.getInstance();
 let singletonB = singleton.getInstance();
